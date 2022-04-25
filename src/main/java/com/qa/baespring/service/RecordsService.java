@@ -27,4 +27,9 @@ public class RecordsService {
 		return repo.findById(id).get();
 	}
 	
+	// Create a new record
+	public Records create(Records record) {
+		return repo.saveAndFlush(record);
+	}
+	
 }
