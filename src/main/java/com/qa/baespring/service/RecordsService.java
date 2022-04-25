@@ -34,13 +34,17 @@ public class RecordsService {
 	
 	// Update a record
 	public Records update(long id, Records record) {
-		Records existing = repo.findById(id).get();
-		existing.setAlbumName(record.getAlbumName());
-		existing.setArtistName(record.getArtistName());
-		existing.setGenre(record.getGenre());
-		existing.setReleaseYear(record.getReleaseYear());
+		Records existing = repo.findById(id).get(); // Get the existing record
+		existing.setAlbumName(record.getAlbumName()); // Change existing album name to new album name
+		existing.setArtistName(record.getArtistName()); // Change existing artist name to new artist name
+		existing.setGenre(record.getGenre()); // Change existing genre to new genre
+		existing.setReleaseYear(record.getReleaseYear()); // Change existing release year to new release year
 		return repo.saveAndFlush(existing);
 	}
 	
-	
+	// Delete a record
+	public boolean delete(long id) {
+		repo.deleteById(id);
+		return !repo.existsById(id); // Due to the !, this method will return true if the delete is successful
+	}
 }
