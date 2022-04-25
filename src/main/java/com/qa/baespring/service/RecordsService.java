@@ -32,4 +32,15 @@ public class RecordsService {
 		return repo.saveAndFlush(record);
 	}
 	
+	// Update a record
+	public Records update(long id, Records record) {
+		Records existing = repo.findById(id).get();
+		existing.setAlbumName(record.getAlbumName());
+		existing.setArtistName(record.getArtistName());
+		existing.setGenre(record.getGenre());
+		existing.setReleaseYear(record.getReleaseYear());
+		return repo.saveAndFlush(existing);
+	}
+	
+	
 }
