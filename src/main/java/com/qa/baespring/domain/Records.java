@@ -27,4 +27,26 @@ public class Records {
 	@Column
 	private int releaseYear;
 	
+	// Constructors
+	
+	public Records() {}
+
+	public Records(String albumName, String artistName, String genre, int releaseYear) {
+		super();
+		this.albumName = albumName;
+		this.artistName = artistName;
+		this.genre = genre;
+		this.releaseYear = releaseYear;
+	}
+
+	public Records(long id, String albumName, String artistName, String genre, int releaseYear) {
+		super();
+		this.id = id;
+		this.albumName = albumName;
+		this.artistName = artistName;
+		this.genre = genre;
+		this.releaseYear = releaseYear;
+	}
+
+	
 }
