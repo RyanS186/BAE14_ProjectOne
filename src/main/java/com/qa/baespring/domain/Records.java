@@ -1,5 +1,7 @@
 package com.qa.baespring.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -91,6 +93,33 @@ public class Records {
 
 	public void setReleaseYear(int releaseYear) {
 		this.releaseYear = releaseYear;
+	}
+
+	
+	// toString method for displaying objects as a string
+	@Override
+	public String toString() {
+		return "Records [id=" + id + ", albumName=" + albumName + ", artistName=" + artistName + ", genre=" + genre + ", releaseYear=" + releaseYear + "]";
+	}
+
+	
+	// The equals method allows us to compare objects much more intelligently.
+	@Override
+	public int hashCode() {
+		return Objects.hash(albumName, artistName, genre, id, releaseYear);
+	}
+	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Records other = (Records) obj;
+		return Objects.equals(albumName, other.albumName) && Objects.equals(artistName, other.artistName) && Objects.equals(genre, other.genre) && id == other.id && releaseYear == other.releaseYear;
 	}
 
 
