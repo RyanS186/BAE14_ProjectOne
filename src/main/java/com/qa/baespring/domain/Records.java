@@ -34,7 +34,7 @@ public class Records {
 	// Default constructor
 	public Records() {}
 
-	// Constructor ommiting id for creating/inserting
+	// Constructor omitting id for creating/inserting
 	public Records(String albumName, String artistName, String genre, int releaseYear) {
 		super();
 		this.albumName = albumName;
