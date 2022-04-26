@@ -2,6 +2,7 @@ package com.qa.baespring.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,7 +61,23 @@ public class RecordsControllerIntegrationTest {
 				.andExpect(content().json(recordAsJSON));
 	}
 	
-	// updateTest
+	// Create test
+	@Test
+	public void createTest() throws Exception {
+		Records entry = new Records("Born to Run", "Bruce Springsteen", "Rock & Roll", 1975);
+		String entryAsJSON = mapper.writeValueAsString(entry);
+		
+		Records result = new Records(2L, "Born to Run", "Bruce Springsteen", "Rock & Roll", 1975);
+		String resultAsJSON = mapper.writeValueAsString(result);
+		
+		mvc.perform(post("/records/create")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(entryAsJSON))
+				.andExpect(status().isCreated())
+				.andExpect(content().json(resultAsJSON));
+	}
+	
+	// Update test
 	@Test
 	public void updateTest() throws Exception {
 		Records entry = new Records("From a Birds Eye View", "Cordae", "Hip Hop", 2022);
@@ -76,7 +93,7 @@ public class RecordsControllerIntegrationTest {
 				.andExpect(content().json(resultAsJSON));
 	}
 	
-	// deleteTest
+	// Delete test
 	@Test
 	public void deleteTest() throws Exception {
 		mvc.perform(delete("/records/delete/1")
