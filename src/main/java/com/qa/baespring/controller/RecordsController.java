@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,12 @@ public class RecordsController {
 	@PostMapping("/create") // localhost:8080/records/create
 	public ResponseEntity<Records> create(@RequestBody Records record) {
 		return new ResponseEntity<Records>(service.create(record), HttpStatus.CREATED);
+	}
+	
+	// PUT
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Records> update(@PathVariable long id, @RequestBody Records record) {
+		return new ResponseEntity<Records>(service.update(id, record), HttpStatus.OK);
 	}
 	
 	
