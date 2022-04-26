@@ -43,6 +43,24 @@ public class RecordsController {
 		return new ResponseEntity<Records>(service.getByID(id), HttpStatus.OK);
 	}
 	
+	// Get by Artist
+	@GetMapping("/getByArtist/{artistName}") // localhost:8080/records/getByArtist/
+	public ResponseEntity<List<Records>> getByArtistName(@PathVariable String artistName) {
+		return new ResponseEntity<List<Records>>(service.getByArtistName(artistName), HttpStatus.OK);
+	}
+	
+	// Get by year
+	@GetMapping("/getByYear/{releaseYear}") // localhost:8080/records/getByYear
+	public ResponseEntity<List<Records>> getByReleaseYear(@PathVariable int releaseYear) {
+		return new ResponseEntity<List<Records>>(service.getByReleaseYear(releaseYear), HttpStatus.OK);
+	}
+	
+	// Get by genre
+	@GetMapping("/getByGenre/{genre}") // localhost:8080/records/getByGenre
+	public ResponseEntity<List<Records>> getByGenre(@PathVariable String genre) {
+		return new ResponseEntity<List<Records>>(service.getByGenre(genre), HttpStatus.OK);
+	}
+	
 	// POST
 	@PostMapping("/create") // localhost:8080/records/create
 	public ResponseEntity<Records> create(@RequestBody Records record) {
