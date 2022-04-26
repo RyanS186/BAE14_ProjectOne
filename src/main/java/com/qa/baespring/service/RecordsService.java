@@ -37,6 +37,11 @@ public class RecordsService {
 		return repo.findByReleaseYear(releaseYear);
 	}
 	
+	// Get by genre
+	public List<Records> getByGenre(String genre) {
+		return repo.findByGenre(genre);
+	}
+	
 	// Create a new record
 	public Records create(Records record) {
 		return repo.saveAndFlush(record);

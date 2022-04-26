@@ -55,6 +55,12 @@ public class RecordsController {
 		return new ResponseEntity<List<Records>>(service.getByReleaseYear(releaseYear), HttpStatus.OK);
 	}
 	
+	// Get by genre
+	@GetMapping("/getByGenre/{genre}") // localhost:8080/records/getByGenre
+	public ResponseEntity<List<Records>> getByGenre(@PathVariable String genre) {
+		return new ResponseEntity<List<Records>>(service.getByGenre(genre), HttpStatus.OK);
+	}
+	
 	// POST
 	@PostMapping("/create") // localhost:8080/records/create
 	public ResponseEntity<Records> create(@RequestBody Records record) {

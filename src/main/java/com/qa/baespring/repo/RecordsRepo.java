@@ -10,5 +10,5 @@ public interface RecordsRepo extends JpaRepository<Records, Long> {
 
 	List<Records> findByArtistName(String artistName);
 	List<Records> findByReleaseYear(int releaseYear);
-
+	List<Records> findByGenre(String genre);
 }
