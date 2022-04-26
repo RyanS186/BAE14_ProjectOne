@@ -61,6 +61,20 @@ public class RecordsControllerIntegrationTest {
 				.andExpect(content().json(recordAsJSON));
 	}
 	
+	// Get by Artist test
+	@Test
+	public void getByArtistTest() throws Exception {
+		Records record = new Records(1L, "The Lost Boy", "Cordae", "Hip Hop", 2019);
+		List<Records> output = new ArrayList<>();
+		output.add(record);
+		String outputAsJSON = mapper.writeValueAsString(output);
+		
+		mvc.perform(get("/records/getByArtist/Cordae")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().json(outputAsJSON));
+	}
+	
 	// Create test
 	@Test
 	public void createTest() throws Exception {
