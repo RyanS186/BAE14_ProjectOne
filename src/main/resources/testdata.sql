@@ -1,0 +1,1 @@
+INSERT INTO `records` (`album_name`, `artist_name`, `genre`, `release_year`) VALUES ('The Lost Boy', 'Cordae', 'Hip Hop', 2019);
