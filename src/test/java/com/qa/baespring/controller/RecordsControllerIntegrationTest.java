@@ -1,6 +1,7 @@
 package com.qa.baespring.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -58,4 +59,19 @@ public class RecordsControllerIntegrationTest {
 				.andExpect(content().json(recordAsJSON));
 	}
 	
+	// updateTest
+	@Test
+	public void updateTest() throws Exception {
+		Records entry = new Records("From a Birds Eye View", "Cordae", "Hip Hop", 2022);
+		String entryAsJSON = mapper.writeValueAsString(entry);
+		
+		Records result = new Records(1L, "From a Birds Eye View", "Cordae", "Hip Hop", 2022);
+		String resultAsJSON = mapper.writeValueAsString(result);
+		
+		mvc.perform(put("/records/update/1")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(entryAsJSON))
+				.andExpect(status().isOk())
+				.andExpect(content().json(resultAsJSON));
+	}
 }
