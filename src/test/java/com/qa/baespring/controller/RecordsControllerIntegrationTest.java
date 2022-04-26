@@ -1,5 +1,6 @@
 package com.qa.baespring.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -73,5 +74,13 @@ public class RecordsControllerIntegrationTest {
 				.content(entryAsJSON))
 				.andExpect(status().isOk())
 				.andExpect(content().json(resultAsJSON));
+	}
+	
+	// deleteTest
+	@Test
+	public void deleteTest() throws Exception {
+		mvc.perform(delete("/records/delete/1")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNoContent());
 	}
 }
