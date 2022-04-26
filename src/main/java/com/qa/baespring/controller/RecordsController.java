@@ -43,6 +43,12 @@ public class RecordsController {
 		return new ResponseEntity<Records>(service.getByID(id), HttpStatus.OK);
 	}
 	
+	// Get by Artist
+	@GetMapping("/getByArtist/{artistName}") // localhost:8080/records/getByArtist/
+	public ResponseEntity<List<Records>> getByArtistName(@PathVariable String artistName) {
+		return new ResponseEntity<List<Records>>(service.getByArtistName(artistName), HttpStatus.OK);
+	}
+	
 	// POST
 	@PostMapping("/create") // localhost:8080/records/create
 	public ResponseEntity<Records> create(@RequestBody Records record) {

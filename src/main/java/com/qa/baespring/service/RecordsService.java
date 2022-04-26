@@ -27,6 +27,11 @@ public class RecordsService {
 		return repo.findById(id).get();
 	}
 	
+	// Get by artist
+	public List<Records> getByArtistName(String artistName) {
+		return repo.findByArtistName(artistName);
+	}
+	
 	// Create a new record
 	public Records create(Records record) {
 		return repo.saveAndFlush(record);
