@@ -32,6 +32,11 @@ public class RecordsService {
 		return repo.findByArtistName(artistName);
 	}
 	
+	// Get by year
+	public List<Records> getByReleaseYear(int releaseYear) {
+		return repo.findByReleaseYear(releaseYear);
+	}
+	
 	// Create a new record
 	public Records create(Records record) {
 		return repo.saveAndFlush(record);
