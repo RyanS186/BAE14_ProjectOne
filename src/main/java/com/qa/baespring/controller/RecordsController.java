@@ -1,14 +1,20 @@
 package com.qa.baespring.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.qa.baespring.domain.Records;
 import com.qa.baespring.service.RecordsService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/Records")
+@RequestMapping("/records")
 public class RecordsController {
 
 	// Link to service
@@ -16,6 +22,14 @@ public class RecordsController {
 	
 	public RecordsController (RecordsService service) {
 		this.service = service;
+	}
+	
+	// GET
+	
+	// GetAll (Get all Records)
+	@GetMapping("/getAll") // localhost:8080/records/getAll
+	public ResponseEntity<List<Records>> getAll() {
+		return new ResponseEntity<List<Records>>(service.getAll(), HttpStatus.OK);
 	}
 	
 	
