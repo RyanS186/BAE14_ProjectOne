@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,5 +33,9 @@ public class RecordsController {
 		return new ResponseEntity<List<Records>>(service.getAll(), HttpStatus.OK);
 	}
 	
-	
+	// Get by ID (Get one Record)
+	@GetMapping("/getById/{id}")
+	public ResponseEntity<Records> getById(@PathVariable long id) {
+		return new ResponseEntity<Records>(service.getByID(id), HttpStatus.OK);
+	}
 }
