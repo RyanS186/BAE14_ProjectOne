@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,10 +50,14 @@ public class RecordsController {
 	}
 	
 	// PUT
-	@PutMapping("/update/{id}")
+	@PutMapping("/update/{id}") //localhost:8080/records/create/update/id
 	public ResponseEntity<Records> update(@PathVariable long id, @RequestBody Records record) {
 		return new ResponseEntity<Records>(service.update(id, record), HttpStatus.OK);
 	}
 	
-	
+	// DELETE
+	@DeleteMapping("/delete/{id}") //localhost:8080/records/delete/id
+	public ResponseEntity<?> delete(@PathVariable long id) {
+		return (service.delete(id)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }
