@@ -30,7 +30,7 @@ const getAll = () => {
 }
 
 // POST request
-document.querySelector(".form").addEventListener('submit', (e) => {
+document.querySelector("#create-form").addEventListener('submit', (e) => {
     e.preventDefault(); // stops the form submitting in the default way
 
     const form = e.target;
@@ -53,6 +53,26 @@ document.querySelector(".form").addEventListener('submit', (e) => {
         form.name.focus(); // selects the name input
     }).catch(err => console.log(err));
 });
+
+// PUT request
+// document.querySelector("#edit-form").addEventListener('submit', (e) => {
+//     e.preventDefault();
+
+//     const form = e.target;
+
+//     const data = {
+//         albumName: form.album.value,
+//         artistName: form.artist.value,
+//         genre: form.genre.value,
+//         releaseYear: form.year.value
+//     }
+
+//     axios.put(`${address}/update/${id}`, data)
+//         .then((res) => {
+//             console.log(res);
+//             getAll();
+//         }).catch(err => console.log(err));
+//     });
 
 // DELETE request
 
@@ -77,6 +97,7 @@ const printResult = (result) => {
 
     const album_img = document.createElement("img");
     album_img.setAttribute("class", "artwork");
+    // album_img.setAttribute("src", `${result.albumArtwork}`)
 
     const album_name = document.createElement("div");
     album_name.setAttribute("class", "album-info");
@@ -93,7 +114,7 @@ const printResult = (result) => {
     const spotify = document.createElement("button");
     spotify.type = "button";
     spotify.setAttribute("class", "spotify-btn");
-    spotify.setAttribute("href", `${result.spotifyLink}`)
+    // spotify.setAttribute("href", `${result.spotifyLink}`)
 
     const spotify_img = document.createElement("img");
     spotify_img.setAttribute("style", "width:125px");
@@ -103,7 +124,7 @@ const printResult = (result) => {
     edit.type = "button";
     edit.textContent = "Edit"
     edit.id = `${result.id}`;
-    edit.setAttribute("class", "edit-btn")
+    edit.setAttribute("class", "edit-btn");
     edit.setAttribute("onClick", "openEdit(this.id)");
 
     const remove = document.createElement("button");
@@ -133,30 +154,72 @@ const printResult = (result) => {
 
 // MODALS
 
-// Create
-
 // Get the modal
-const modal = document.getElementById("createModal");
+const createModal = document.getElementById("create-modal");
+const editModal = document.getElementById("edit-modal");
 
 // Get the button that opens the modal
-const btn = document.getElementById("add-btn");
+const addBtn = document.querySelector("#add-btn");
 
 // Get the <span> element that closes the modal
 const span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
+addBtn.onclick = function() {
+  createModal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-  modal.style.display = "none";
+  createModal.style.display = "none";
+  editModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == createModal) {
+    createModal.style.display = "none";
+    editModal.style.display = "none";
   }
 } 
+
+// This currently opens a modal that you can't close via the <span>. Everything else works as intended.
+
+const openEdit = (id) => {
+    editModal.style.display = "block";
+    document.querySelector(".close").addEventListener('click', () => {
+        editModal.style.display = "none";
+    })
+
+    axios.get(`${address}/getById/${id}`)
+        .then((res) => {
+            const entry = res.data;
+            // Populate modal form with current values
+            const edit_form = document.forms["edit-form"];
+            edit_form["album"].value = entry.albumName;
+            edit_form["artist"].value = entry.artistName;
+            edit_form["genre"].value = entry.genre;
+            edit_form["year"].value = entry.releaseYear;
+
+            document.querySelector("#edit-form").addEventListener('submit', (e) => {
+                e.preventDefault(); // stops the form submitting in the default way
+            
+                const form = e.target;
+                const data = {
+                    albumName: form.album.value,
+                    artistName: form.artist.value,
+                    genre: form.genre.value,
+                    releaseYear: form.year.value
+                }
+            
+                axios.put(`${address}/update/${id}`, data)
+                    .then((res) => {
+                        console.log(res);
+                        getAll();
+                        editModal.style.display = "none";
+                    }).catch((err) => console.error(err))
+            
+        }).catch((err) => console.error(err))
+
+})
+}

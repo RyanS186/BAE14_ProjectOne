@@ -17,32 +17,45 @@
         </div>
     </div>
 
-    <div id="Modal" class="modal">
-
+    <div id="create-modal" class="modal">
         <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <form class="form">
+        <div class="create-modal-content">
+            <div>
+                <span class="close">&times;</span>
                 <br>
-                <br>
-                <!-- <label class="form-text" for="album-name">Album Name:</label><br> -->
+                <h2 style="text-align:center">Add Record</h2>
+            </div>
+          <form class="form" id="create-form">
                 <input class="form-field" id="album-name" type="text" name="album" placeholder="Album Name" required><br>
-                <!-- <label class="form-text" for="artist-name">Artist Name:</label><br> -->
                 <input class="form-field" id="artist-name" type="text" name="artist" placeholder="Artist Name" required><br>
-                <!-- <label class="form-text" for="album-genre">Genre:</label><br> -->
                 <input class="form-field" id="album-genre" type="text"  name="genre" placeholder="Genre"><br>
-                <!-- <label class="form-text" for="release-year">Release Year:</label><br> -->
                 <input class="form-field" id="release-year" type="number"  name="year" placeholder="Release Year" min="1900"><br>
-                <!-- <label class="form-text" for="spotify-link">Spotify URL:</label><br>
-                <input class="form-field" id="spotify-link" type="text"  name="spotify" placeholder="Spotify URL"><br>
-                <label class="form-text" for="album-artwork">Album Artwork URL:</label><br>
+                <!-- <input class="form-field" id="spotify-link" type="text"  name="spotify" placeholder="Spotify URL"><br>
                 <input class="form-field" id="album-artwork" type="text" name="artwork" placeholder="Album Artwork URL"><br> -->
                 <button class="submit-btn" type="submit">Submit</button>
                 <button class="reset-btn" type="reset">Reset</button>
           </form>
         </div>
-      
-      </div>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <!-- Modal content -->
+        <div class="edit-modal-content">
+          <span class="close">&times;</span>
+          <br>
+          <h2 style="text-align:center">Edit Record</h2>
+          <form name="edit-form" class="form" id="edit-form">
+                <input class="form-field" id="album-name" type="text" name="album" placeholder="Album Name" required><br>
+                <input class="form-field" id="artist-name" type="text" name="artist" placeholder="Artist Name" required><br>
+                <input class="form-field" id="album-genre" type="text"  name="genre" placeholder="Genre"><br>
+                <input class="form-field" id="release-year" type="number"  name="year" placeholder="Release Year" min="1900"><br>
+                <!-- <input class="form-field" id="spotify-link" type="text"  name="spotify" placeholder="Spotify URL"><br>
+                <input class="form-field" id="album-artwork" type="text" name="artwork" placeholder="Album Artwork URL"><br> -->
+                <button class="submit-btn" type="submit">Submit</button>
+                <button class="reset-btn" type="reset">Reset</button>
+          </form>
+        </div>
+    </div>
 
     <div class="wrapper">
         <div class="row" id="results-div">
@@ -54,7 +67,7 @@
                         <img style="width: 125px;" src="../images/spotify/Spotify_Logo_RGB_Black.png">
                     </button> 
                     <br>
-                    <button class="edit-btn">Edit</button>
+                    <button class="edit-btn" id="edit-btn">Edit</button>
                     <button class="remove-btn" type="submit">Remove</button>
                 </div>
             </div>
