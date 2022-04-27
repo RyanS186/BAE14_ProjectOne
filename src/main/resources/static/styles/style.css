@@ -1,0 +1,115 @@
+:root {
+    --grey-20: #202020;
+    --grey-30: #303030;
+    --spotify-green: #1DB954;
+    --spotify-green-hover: #20CF5E;
+    --spotify-black: #191414;
+    --edit-blue: #008DD0;
+    --edit-blue-hover: #00A0EB;
+    --remove-red: #A60000;
+    --remove-red-hover: #C20000;
+    --white: #fff;
+    --black: #000;
+}
+
+body {
+    background-color: var(--grey-20);
+    color: var(--white);
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  /* Float four columns side by side */
+  .column {
+    float: left;
+    width: 350px;
+    padding: 10px 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding in columns */
+  .row {
+      margin: 0 -5px;
+      padding-bottom: 20px;
+}
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the counter cards */
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: var(--grey-30);
+    border-radius: 10px;
+    height: 400px;
+  }
+  
+  /* Responsive columns - one column layout (vertical) on small screens */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+
+.artwork {
+    width:200px;
+    height:200px;
+    border-radius: 10px;
+    background: url(../images/artwork_placeholder.png);
+}
+
+.spotify-btn {
+    background: var(--spotify-green);
+    border-radius: 10px;
+    border-color: var(--spotify-black);
+    padding: 5px;
+    margin: 5px;
+    width:160px;
+}
+
+.spotify-btn:hover {
+    background-color: var(--spotify-green-hover);
+}
+
+.edit-btn {
+    background-color: var(--edit-blue);
+    border-radius: 5px;
+    border-color: var(--edit-blue);
+    padding:5px;
+    margin:5px;
+    width: 75px;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.edit-btn:hover {
+    background-color: var(--edit-blue-hover);
+}
+
+.remove-btn {
+    background-color: var(--remove-red);
+    border-radius: 5px;
+    border-color: var(--remove-red);
+    padding:5px;
+    margin:5px;
+    width: 75px;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.remove-btn:hover {
+    background-color: var(--remove-red-hover);
+}
