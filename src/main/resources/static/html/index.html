@@ -8,25 +8,23 @@
     <title>Record Collection</title>
     <link rel="icon" type="image/gif/png" href="../images/favicon/favicon.png">
 </head>
-<body>
+<body onload="getAll()">
     
     <div class="header">
         <a class="logo">Record Collection</a>
         <div class="header-right">
-            <button class="add-btn">Add to Collection</button>
+            <button class="add-btn" id="add-btn">Add to Collection</button>
         </div>
     </div>
 
     <div class="wrapper">
-        <div class="row">
+        <div class="row" id="results-div">
             <div class="column">
-            <div class="card"> 
+                <div class="card"> 
                     <img class="artwork"><img> 
-                    <div>Album Name</div> 
-                    <div>Album Artist</div> 
-                    <div>Release Year</div>
+                    <div class="album-info">Album Name <br> Album Artist <br> Release Year</div>
                     <button class="spotify-btn">
-                    <img style="width: 125px;" src="../images/spotify/Spotify_Logo_RGB_Black.png">
+                        <img style="width: 125px;" src="../images/spotify/Spotify_Logo_RGB_Black.png">
                     </button> 
                     <br>
                     <button class="edit-btn">Edit</button>
@@ -36,7 +34,7 @@
         </div>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../scripts/scripts.js"></script>
 </body>
 </html>

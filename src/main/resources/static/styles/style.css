@@ -72,7 +72,7 @@ body {
 .spotify-btn {
     background: var(--spotify-green);
     border-radius: 10px;
-    border-color: var(--spotify-black);
+    border-color: var(--spotify-green);
     padding: 5px;
     margin: 5px;
     width:160px;

@@ -1,2 +1,96 @@
 'use strict'
 
+const address = "http://localhost:8080/records"
+
+// Divs
+const results_div = document.querySelector("#results-div");
+// const form_div = ;
+
+// Buttons
+const add_btn = document.querySelector("#add-btn");
+
+// Inputs
+
+// GET request
+const getAll = () => {
+    axios.get(`${address}/getAll`)
+        .then((response) => {
+            results_div.innerHTML = "";
+            const results = response.data;
+
+            for (let result of results) {
+                printResult(result);
+            }
+        }).catch((err) => console.error(err))
+}
+
+const printResult = (result) => {
+
+    const linebreak = document.createElement("br");
+
+    const column_div = document.createElement("div");
+    column_div.setAttribute("class", "column");
+    
+    const card_div = document.createElement("div");
+    card_div.setAttribute("class", "card");
+
+    const album_img = document.createElement("img");
+    album_img.setAttribute("class", "artwork");
+
+    const album_name = document.createElement("div");
+    album_name.setAttribute("class", "album-info");
+    album_name.textContent = `${result.albumName}`;
+
+    const artist_name = document.createElement("div");
+    artist_name.setAttribute("class", "album-info");
+    artist_name.textContent = `${result.artistName}`;
+
+    const release_year = document.createElement("div");
+    release_year.setAttribute("class", "album-info");
+    release_year.textContent = `${result.releaseYear}`;
+
+    // const artist_name = document.createElement("div");
+    // artist_name.setAttribute("class", "album-info");
+    // artist_name.textContent = `${result.artistName}`;
+
+    // TODO: Add spotify button
+    const spotify = document.createElement("button");
+    spotify.type = "button";
+    spotify.setAttribute("class", "spotify-btn");
+    spotify.setAttribute("href", `${result.spotifyLink}`)
+
+    const spotify_img = document.createElement("img");
+    spotify_img.setAttribute("style", "width:125px");
+    spotify_img.setAttribute("src", "../images/spotify/Spotify_Logo_RGB_Black.png")
+
+    const edit = document.createElement("button");
+    edit.type = "button";
+    edit.textContent = "Edit"
+    edit.id = `${result.id}`;
+    edit.setAttribute("class", "edit-btn")
+    edit.setAttribute("onClick", "openEdit(this.id)");
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.textContent = "Remove";
+    remove.id = `${result.id}`;
+    remove.setAttribute("class", "remove-btn");
+    remove.setAttribute("onClick", "del(this.id)");
+
+    spotify.appendChild(spotify_img);
+
+    card_div.appendChild(album_img);
+    card_div.appendChild(album_name);
+    card_div.appendChild(linebreak);
+    card_div.appendChild(artist_name);
+    card_div.appendChild(linebreak);
+    card_div.appendChild(release_year);
+    card_div.appendChild(linebreak);
+    card_div.appendChild(spotify);
+    card_div.appendChild(linebreak);
+    card_div.appendChild(edit);
+    card_div.appendChild(remove);
+
+    column_div.appendChild(card_div);
+    results_div.appendChild(column_div);
+}
