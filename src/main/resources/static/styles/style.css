@@ -24,6 +24,7 @@ body {
     margin: 16px;
 }
 
+/* CARDS */
 * {
     box-sizing: border-box;
   }
@@ -32,27 +33,24 @@ body {
     font-family: Arial, Helvetica, sans-serif;
   }
   
-  /* Float columns side by side */
+
   .column {
     float: left;
-    width: 350px;
+    width: 300px;
     padding: 10px 10px;
   }
   
-  /* Remove extra left and right margins, due to padding in columns */
   .row {
       margin: 0 -5px;
       padding-bottom: 20px;
 }
   
-  /* Clear floats after the columns */
   .row:after {
     content: "";
     display: table;
     clear: both;
   }
   
-  /* Style the cards */
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
@@ -76,6 +74,7 @@ body {
     padding: 5px;
     margin: 5px;
     width:160px;
+    cursor:pointer;
 }
 
 .spotify-btn:hover {
@@ -91,6 +90,7 @@ body {
     width: 75px;
     color: var(--white);
     font-weight: bold;
+    cursor:pointer;
 }
 
 .edit-btn:hover {
@@ -106,6 +106,7 @@ body {
     width: 75px;
     color: var(--white);
     font-weight: bold;
+    cursor:pointer;
 }
 
 .remove-btn:hover {
@@ -122,20 +123,20 @@ body {
     color: var(--spotify-black);
     font-size: 16px;
     font-weight: bold;
+    cursor:pointer;
 }
 
 .add-btn:hover {
     background-color: var(--spotify-green-hover);
 }
 
-/* Style the header with a grey background and some padding */
+/* HEADER */
 .header {
     overflow: hidden;
     background-color: var(--grey-30);
     padding: 20px 10px;
   }
   
-  /* Style the header links */
   .header a {
     float: left;
     color: var(--white);
@@ -147,18 +148,15 @@ body {
     border-radius: 4px;
   }
   
-  /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
   .header a.logo {
     font-size: 25px;
     font-weight: bold;
   }
   
-  /* Float the link section to the right */
   .header-right {
     float: right;
   }
   
-  /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
   @media screen and (max-width: 500px) {
     .header a {
       float: none;
@@ -168,4 +166,89 @@ body {
     .header-right {
       float: none;
     }
+}
+
+ /* MODAL */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: var(--grey-30);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 2px solid var(--grey-20);
+    border-radius: 5px;
+    width: 300px; /* Could be more or less, depending on screen size*/
+    /* height:400px;  */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: var(--white);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: var(--grey-20);
+    text-decoration: none;
+    cursor: pointer;
+  } 
+
+.form {
+text-align: center;
+}
+
+.form-field {
+background-color: var(--grey-20);
+color: var(--white);
+border-color: var(--grey-20);
+border-radius: 5px;
+margin-top: 5px;
+margin-bottom:10px;
+text-align: center;
+}
+
+.submit-btn {
+    background-color: var(--spotify-green);
+    border-radius: 5px;
+    border-color: var(--spotify-green);
+    padding:5px;
+    width: 75px;
+    color: var(--spotify-black);
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover {
+    background-color: var(--spotify-green-hover);
+}
+
+.reset-btn {
+    background-color: var(--remove-red);
+    border-radius: 5px;
+    border-color: var(--remove-red);
+    padding:5px;
+    margin:5px;
+    width: 75px;
+    color: var(--white);
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.reset-btn:hover {
+    background-color: var(--remove-red-hover);
 }
