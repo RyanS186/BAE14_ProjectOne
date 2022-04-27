@@ -23,20 +23,22 @@
         <div class="modal-content">
           <span class="close">&times;</span>
           <form class="form">
-              <br>
-              <br>
-              <label class="form-text" for="album-name">Album Name:</label><br>
-              <input class="form-field" type="text" id="album-name" name="album-name"><br>
-              <label class="form-text" for="artist-name">Artist Name:</label><br>
-              <input class="form-field" type="text" id="artist-name" name="artist-name"><br>
-              <label class="form-text" for="release-year">Release Year:</label><br>
-              <input class="form-field" type="text" id="release-year" name="release-year"><br>
-              <!-- <label class="form-text" for="spotify-link">Spotify URL:</label><br>
-              <input class="form-field" type="text" id="spotify-link" name="spotify-link"><br>
-              <label class="form-text" for="album-artwork">Album Artwork URL:</label><br>
-              <input class="form-field" type="text" id="album-artwork" name="album-artwork"><br> -->
-              <input class="submit-btn" type="button" onClick="create()" value="Submit">
-              <input class="reset-btn" type="reset">
+                <br>
+                <br>
+                <!-- <label class="form-text" for="album-name">Album Name:</label><br> -->
+                <input class="form-field" id="album-name" type="text" name="album" placeholder="Album Name" required><br>
+                <!-- <label class="form-text" for="artist-name">Artist Name:</label><br> -->
+                <input class="form-field" id="artist-name" type="text" name="artist" placeholder="Artist Name" required><br>
+                <!-- <label class="form-text" for="album-genre">Genre:</label><br> -->
+                <input class="form-field" id="album-genre" type="text"  name="genre" placeholder="Genre"><br>
+                <!-- <label class="form-text" for="release-year">Release Year:</label><br> -->
+                <input class="form-field" id="release-year" type="number"  name="year" placeholder="Release Year" min="1900"><br>
+                <!-- <label class="form-text" for="spotify-link">Spotify URL:</label><br>
+                <input class="form-field" id="spotify-link" type="text"  name="spotify" placeholder="Spotify URL"><br>
+                <label class="form-text" for="album-artwork">Album Artwork URL:</label><br>
+                <input class="form-field" id="album-artwork" type="text" name="artwork" placeholder="Album Artwork URL"><br> -->
+                <button class="submit-btn" type="submit">Submit</button>
+                <button class="reset-btn" type="reset">Reset</button>
           </form>
         </div>
       

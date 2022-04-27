@@ -10,6 +10,11 @@ const results_div = document.querySelector("#results-div");
 const add_btn = document.querySelector("#add-btn");
 
 // Inputs
+// const alb_name = document.querySelector(".album-name");
+// const art_name = document.querySelector(".artist-name");
+// const rel_year = document.querySelector(".release-year");
+// const spot_link = document.querySelector(".spotify-link");
+// const alb_art = document.querySelector(".album-artwork");
 
 // GET request
 const getAll = () => {
@@ -25,9 +30,29 @@ const getAll = () => {
 }
 
 // POST request
-const create = () => {
-    axios.post(`${address}/create`)
-}
+document.querySelector(".form").addEventListener('submit', (e) => {
+    e.preventDefault(); // stops the form submitting in the default way
+
+    const form = e.target;
+
+    const data = {
+        albumName: form.album.value,
+        artistName: form.artist.value,
+        genre: form.genre.value,
+        releaseYear: form.year.value
+    }
+
+    console.log("DATA: ", data);
+
+    axios.post(`${address}/create`, data)
+    .then((res) => {
+        console.log(res);
+        getAll();
+
+        form.reset(); //resets form
+        form.name.focus(); // selects the name input
+    }).catch(err => console.log(err));
+});
 
 // Method to construct objects on the webpage to display objects from the API
 const printResult = (result) => {
@@ -96,7 +121,8 @@ const printResult = (result) => {
     results_div.appendChild(column_div);
 }
 
-// Modal
+// MODAL
+
 // Get the modal
 const modal = document.getElementById("myModal");
 
