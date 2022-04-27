@@ -54,6 +54,16 @@ document.querySelector(".form").addEventListener('submit', (e) => {
     }).catch(err => console.log(err));
 });
 
+// DELETE request
+
+const deleteRecord = id => {
+    axios.delete(`${address}/delete/${id}`)
+        .then(res => {
+            console.log(res);
+            getAll();
+        }).catch(err => console.log(err));
+}
+
 // Method to construct objects on the webpage to display objects from the API
 const printResult = (result) => {
 
@@ -101,7 +111,7 @@ const printResult = (result) => {
     remove.textContent = "Remove";
     remove.id = `${result.id}`;
     remove.setAttribute("class", "remove-btn");
-    remove.setAttribute("onClick", "del(this.id)");
+    remove.setAttribute("onClick", "deleteRecord(this.id)");
 
     spotify.appendChild(spotify_img);
 
@@ -121,10 +131,12 @@ const printResult = (result) => {
     results_div.appendChild(column_div);
 }
 
-// MODAL
+// MODALS
+
+// Create
 
 // Get the modal
-const modal = document.getElementById("myModal");
+const modal = document.getElementById("createModal");
 
 // Get the button that opens the modal
 const btn = document.getElementById("add-btn");
