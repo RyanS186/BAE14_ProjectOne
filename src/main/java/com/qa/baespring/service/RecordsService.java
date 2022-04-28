@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.baespring.domain.Records;
+import com.qa.baespring.exceptions.RecordNotFoundException;
 import com.qa.baespring.repo.RecordsRepo;
 
 @Service
@@ -24,7 +25,7 @@ public class RecordsService {
 	
 	// Get by Id
 	public Records getByID(long id) {
-		return repo.findById(id).get();
+		return repo.findById(id).orElseThrow(RecordNotFoundException::new);
 	}
 	
 	// Get by artist
@@ -49,7 +50,7 @@ public class RecordsService {
 	
 	// Update a record
 	public Records update(long id, Records record) {
-		Records existing = repo.findById(id).get(); // Get the existing record
+		Records existing = repo.findById(id).orElseThrow(RecordNotFoundException::new); // Get the existing record
 		existing.setAlbumName(record.getAlbumName()); // Change existing album name to new album name
 		existing.setArtistName(record.getArtistName()); // Change existing artist name to new artist name
 		existing.setGenre(record.getGenre()); // Change existing genre to new genre
