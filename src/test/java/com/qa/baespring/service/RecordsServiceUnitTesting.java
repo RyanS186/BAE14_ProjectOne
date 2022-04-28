@@ -37,7 +37,16 @@ public class RecordsServiceUnitTesting {
 		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 	
-
+	@Test
+	void getByIdTest() {
+		long id = 1;
+		Records existingRecord = new Records(1L, "Born in the U.S.A", "Bruce Springsteen", "Rock & Roll", 1984);
+		
+		Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(existingRecord));
+		
+		assertThat(this.service.getById(id)).isEqualTo(existingRecord);
+	}
+	
 	@Test
 	void createTest() {
 		Records newRecord = new Records("Born to Run", "Bruce Springsteen", "Rock & Roll", 1975);
