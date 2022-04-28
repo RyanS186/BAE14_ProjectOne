@@ -57,6 +57,17 @@ public class RecordsServiceUnitTesting {
 		
 		Mockito.verify(this.repo, Mockito.times(1)).findByArtistName(artistName);
 	}
+
+	@Test
+	void getByReleaseYearTest() {
+		int year = 1984;
+		List<Records> testRecords = List.of(new Records(1L, "Born in the U.S.A", "Bruce Springsteen", "Rock & Roll", 1984));
+		
+		Mockito.when(this.repo.findByReleaseYear(year)).thenReturn(testRecords);
+		assertThat(this.service.getByReleaseYear(year)).isEqualTo(testRecords);
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findByReleaseYear(year);
+	}
 	
 	@Test
 	void createTest() {
