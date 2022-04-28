@@ -1,0 +1,276 @@
+:root {
+    --grey-20: #202020;
+    --grey-30: #303030;
+    --spotify-green: #1DB954;
+    --spotify-green-hover: #20CF5E;
+    --spotify-black: #191414;
+    --add-green: #43b32d;
+    --add-greem-hover: #66df4e;
+    --edit-blue: #008DD0;
+    --edit-blue-hover: #00A0EB;
+    --remove-red: #A60000;
+    --remove-red-hover: #C20000;
+    --white: #fff;
+    --black: #000;
+}
+
+body {
+    background-color: var(--grey-20);
+    color: var(--white);
+    margin:0;
+}
+
+.wrapper {
+    margin: 16px;
+}
+
+/* CARDS */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+
+  .column {
+    float: left;
+    width: 300px;
+    padding: 10px 10px;
+  }
+  
+  .row {
+      margin: 0 -5px;
+      padding-bottom: 20px;
+}
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: var(--grey-30);
+    border-radius: 10px;
+    height: 400px;
+  }
+
+.artwork {
+    width:200px;
+    height:200px;
+    border-radius: 10px;
+    background: url(../images/artwork_placeholder.png);
+}
+
+.spotify-btn {
+    background: var(--spotify-green);
+    border-radius: 10px;
+    border-color: var(--spotify-green);
+    padding: 5px;
+    margin: 5px;
+    width:160px;
+    cursor:pointer;
+}
+
+.spotify-btn:hover {
+    background-color: var(--spotify-green-hover);
+}
+
+.edit-btn {
+    background-color: var(--edit-blue);
+    border-radius: 5px;
+    border-color: var(--edit-blue);
+    padding:5px;
+    margin:5px;
+    width: 75px;
+    color: var(--white);
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.edit-btn:hover {
+    background-color: var(--edit-blue-hover);
+}
+
+.remove-btn {
+    background-color: var(--remove-red);
+    border-radius: 5px;
+    border-color: var(--remove-red);
+    padding:5px;
+    margin:5px;
+    width: 75px;
+    color: var(--white);
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.remove-btn:hover {
+    background-color: var(--remove-red-hover);
+}
+
+.add-btn {
+    background-color: var(--spotify-green);
+    border-radius: 5px;
+    border-color: var(--spotify-green);
+    padding:5px;
+    /* margin:5px; */
+    width: 150px;
+    color: var(--spotify-black);
+    font-size: 16px;
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.add-btn:hover {
+    background-color: var(--spotify-green-hover);
+}
+
+/* HEADER */
+.header {
+    overflow: hidden;
+    background-color: var(--grey-30);
+    padding: 20px 10px;
+  }
+  
+  .header a {
+    float: left;
+    color: var(--white);
+    text-align: center;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+  }
+  
+  .header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  .header-right {
+    float: right;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .header a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    .header-right {
+      float: none;
+    }
+}
+
+ /* MODAL */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .create-modal-content {
+    background-color: var(--grey-30);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 2px solid var(--grey-20);
+    border-radius: 5px;
+    width: 300px; /* Could be more or less, depending on screen size*/
+    /* height:400px;  */
+  }
+
+  .edit-modal-content {
+    background-color: var(--grey-30);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 2px solid var(--grey-20);
+    border-radius: 5px;
+    width: 300px; /* Could be more or less, depending on screen size*/
+    /* height:400px;  */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: var(--white);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: var(--grey-20);
+    text-decoration: none;
+    cursor: pointer;
+  } 
+
+.form {
+text-align: center;
+}
+
+.form-field {
+background-color: var(--grey-20);
+color: var(--white);
+border-color: var(--grey-20);
+border-radius: 5px;
+margin-top: 5px;
+margin-bottom:10px;
+text-align: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.submit-btn {
+    background-color: var(--spotify-green);
+    border-radius: 5px;
+    border-color: var(--spotify-green);
+    padding:5px;
+    width: 75px;
+    color: var(--spotify-black);
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.submit-btn:hover {
+    background-color: var(--spotify-green-hover);
+}
+
+.reset-btn {
+    background-color: var(--remove-red);
+    border-radius: 5px;
+    border-color: var(--remove-red);
+    padding:5px;
+    margin:5px;
+    width: 75px;
+    color: var(--white);
+    font-weight: bold;
+    cursor:pointer;
+}
+
+.reset-btn:hover {
+    background-color: var(--remove-red-hover);
+}
