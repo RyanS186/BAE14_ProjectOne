@@ -56,7 +56,7 @@ public class RecordsControllerUnitTest {
 		Records record = new Records(1L, "The Lost Boy", "Cordae", "Hip Hop", 2019);
 		String recordAsJSON = mapper.writeValueAsString(record);
 		
-		Mockito.when(service.getByID(1)).thenReturn(record);
+		Mockito.when(service.getById(1)).thenReturn(record);
 		
 		mvc.perform(get("/records/getById/1")
 				.contentType(MediaType.APPLICATION_JSON))

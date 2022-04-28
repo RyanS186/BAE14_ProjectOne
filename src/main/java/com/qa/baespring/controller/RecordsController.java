@@ -40,7 +40,7 @@ public class RecordsController {
 	// Get by ID (Get one Record)
 	@GetMapping("/getById/{id}") // localhost:8080/records/getById
 	public ResponseEntity<Records> getById(@PathVariable long id) {
-		return new ResponseEntity<Records>(service.getByID(id), HttpStatus.OK);
+		return new ResponseEntity<Records>(service.getById(id), HttpStatus.OK);
 	}
 	
 	// Get by Artist

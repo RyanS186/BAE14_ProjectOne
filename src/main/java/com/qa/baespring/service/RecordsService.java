@@ -24,7 +24,7 @@ public class RecordsService {
 	}
 	
 	// Get by Id
-	public Records getByID(long id) {
+	public Records getById(long id) {
 		return repo.findById(id).orElseThrow(RecordNotFoundException::new);
 	}
 	
