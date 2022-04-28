@@ -2,6 +2,7 @@ package com.qa.baespring.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -35,5 +36,18 @@ public class RecordsServiceUnitTesting {
 		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(newRecord);
 	}
 	
-
+	@Test
+	void testUpdate() {
+		long id = 1L;
+		Records existingRecord = new Records(1L, "Born in the U.S.A", "Bruce Springsteen", "Rock & Roll", 1984);
+		Records updatedRecord = new Records(1L, "Nebraska", "Bruce Springsteen", "Folk", 1982);
+		
+		Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(existingRecord));
+		Mockito.when(this.repo.saveAndFlush(updatedRecord)).thenReturn(updatedRecord);
+		
+		assertThat(this.service.update(id, new Records("Nebraska", "Bruce Springsteen", "Folk", 1982))).isEqualTo(updatedRecord);
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findById(id);
+		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(updatedRecord);
+	}
 }
