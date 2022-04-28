@@ -4,17 +4,6 @@ const address = "http://localhost:8080/records"
 
 // Divs
 const results_div = document.querySelector("#results-div");
-// const form_div = ;
-
-// Buttons
-const add_btn = document.querySelector("#add-btn");
-
-// Inputs
-// const alb_name = document.querySelector(".album-name");
-// const art_name = document.querySelector(".artist-name");
-// const rel_year = document.querySelector(".release-year");
-// const spot_link = document.querySelector(".spotify-link");
-// const alb_art = document.querySelector(".album-artwork");
 
 // GET request
 const getAll = () => {
@@ -30,53 +19,111 @@ const getAll = () => {
 }
 
 // POST request
-document.querySelector("#create-form").addEventListener('submit', (e) => {
-    e.preventDefault(); // stops the form submitting in the default way
+const openAdd = () => {
+    // Get the modal and opens it
+    const createModal = document.getElementById("create-modal");
+    createModal.style.display = "block";
 
-    const form = e.target;
+    // Gets the <span> that closes this modal
+    const span = document.getElementsByClassName("close")[0];
 
-    const data = {
-        albumName: form.album.value,
-        artistName: form.artist.value,
-        genre: form.genre.value,
-        releaseYear: form.year.value
+    // When the user clicks on <span>, close the modal
+    span.onclick = function() {
+        createModal.style.display = "none";
+      }
+
+    // When the user clicks outside of the modal, close the modal
+    window.onclick = function(event) {
+    if (event.target == createModal) {
+        createModal.style.display = "none";
     }
+    } 
 
-    console.log("DATA: ", data);
-
-    axios.post(`${address}/create`, data)
-    .then((res) => {
-        console.log(res);
-        getAll();
-
-        form.reset(); //resets form
-        form.name.focus(); // selects the name input
-    }).catch(err => console.log(err));
-});
+    document.querySelector("#create-form").addEventListener('submit', (e) => {
+        e.preventDefault(); // stops the form submitting in the default way
+    
+        const form = e.target;
+    
+        const data = {
+            albumName: form.album.value,
+            artistName: form.artist.value,
+            genre: form.genre.value,
+            releaseYear: form.year.value
+        }
+    
+        console.log("DATA: ", data);
+    
+        axios.post(`${address}/create`, data)
+        .then((res) => {
+            console.log(res);
+            getAll();
+    
+            form.reset(); //resets form
+            form.name.focus(); // selects the name input
+        }).catch(err => console.log(err));
+    });
+}
 
 // PUT request
-// document.querySelector("#edit-form").addEventListener('submit', (e) => {
-//     e.preventDefault();
+const openEdit = (id) => {
+    // Gets the modal and opens it
+    const editModal = document.getElementById("edit-modal");
+    editModal.style.display = "block";
 
-//     const form = e.target;
+    axios.get(`${address}/getById/${id}`)
+        .then((res) => {
+            const entry = res.data;
+            // Populates the edit form with current values
+            const edit_form = document.forms["edit-form"];
+            edit_form["album"].value = entry.albumName;
+            edit_form["artist"].value = entry.artistName;
+            edit_form["genre"].value = entry.genre;
+            edit_form["year"].value = entry.releaseYear;
 
-//     const data = {
-//         albumName: form.album.value,
-//         artistName: form.artist.value,
-//         genre: form.genre.value,
-//         releaseYear: form.year.value
-//     }
+            // Gets the <span> that closes this modal
+            const span = document.getElementsByClassName("close")[1];
 
-//     axios.put(`${address}/update/${id}`, data)
-//         .then((res) => {
-//             console.log(res);
-//             getAll();
-//         }).catch(err => console.log(err));
-//     });
+            // When the user clicks on <span>, close the modal
+            span.onclick = function() {
+                editModal.style.display = "none";
+            }
+
+            // When the user clicks outside of the modal, close the modal
+            window.onclick = function(event) {
+                if (event.target == editModal) {
+                  editModal.style.display = "none";
+                }
+            } 
+
+            document.querySelector("#edit-form").addEventListener('submit', (e) => {
+                e.preventDefault(); // stops the form submitting in the default way
+                
+                // Takes new values from the form
+                const form = e.target;
+                const data = {
+                    albumName: form.album.value,
+                    artistName: form.artist.value,
+                    genre: form.genre.value,
+                    releaseYear: form.year.value
+                }
+
+                console.log("DATA: ", data);
+                
+                // PUT request
+                axios.put(`${address}/update/${id}`, data)
+                    .then((res) => {
+                        console.log(res);
+                        getAll();
+                        editModal.style.display = "none";
+                    }).catch((err) => console.error(err))
+            
+        }).catch((err) => console.error(err))
+
+})
+}
 
 // DELETE request
-
-const deleteRecord = id => {
+const deleteRecord = (id) => {
     axios.delete(`${address}/delete/${id}`)
         .then(res => {
             console.log(res);
@@ -152,74 +199,3 @@ const printResult = (result) => {
     results_div.appendChild(column_div);
 }
 
-// MODALS
-
-// Get the modal
-const createModal = document.getElementById("create-modal");
-const editModal = document.getElementById("edit-modal");
-
-// Get the button that opens the modal
-const addBtn = document.querySelector("#add-btn");
-
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal
-addBtn.onclick = function() {
-  createModal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  createModal.style.display = "none";
-  editModal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == createModal) {
-    createModal.style.display = "none";
-    editModal.style.display = "none";
-  }
-} 
-
-// This currently opens a modal that you can't close via the <span>. Everything else works as intended.
-
-const openEdit = (id) => {
-    editModal.style.display = "block";
-    document.querySelector(".close").addEventListener('click', () => {
-        editModal.style.display = "none";
-    })
-
-    axios.get(`${address}/getById/${id}`)
-        .then((res) => {
-            const entry = res.data;
-            // Populate modal form with current values
-            const edit_form = document.forms["edit-form"];
-            edit_form["album"].value = entry.albumName;
-            edit_form["artist"].value = entry.artistName;
-            edit_form["genre"].value = entry.genre;
-            edit_form["year"].value = entry.releaseYear;
-
-            document.querySelector("#edit-form").addEventListener('submit', (e) => {
-                e.preventDefault(); // stops the form submitting in the default way
-            
-                const form = e.target;
-                const data = {
-                    albumName: form.album.value,
-                    artistName: form.artist.value,
-                    genre: form.genre.value,
-                    releaseYear: form.year.value
-                }
-            
-                axios.put(`${address}/update/${id}`, data)
-                    .then((res) => {
-                        console.log(res);
-                        getAll();
-                        editModal.style.display = "none";
-                    }).catch((err) => console.error(err))
-            
-        }).catch((err) => console.error(err))
-
-})
-}
