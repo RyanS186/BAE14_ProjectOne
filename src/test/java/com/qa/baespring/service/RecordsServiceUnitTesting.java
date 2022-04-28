@@ -46,6 +46,17 @@ public class RecordsServiceUnitTesting {
 		
 		assertThat(this.service.getById(id)).isEqualTo(existingRecord);
 	}
+
+	@Test
+	void getByArtistNameTest() {
+		String artistName = "Bruce Springsteen";
+		List<Records> testRecords = List.of(new Records(1L, "Born in the U.S.A", "Bruce Springsteen", "Rock & Roll", 1984));
+		
+		Mockito.when(this.repo.findByArtistName(artistName)).thenReturn(testRecords);
+		assertThat(this.service.getByArtistName(artistName)).isEqualTo(testRecords);
+		
+		Mockito.verify(this.repo, Mockito.times(1)).findByArtistName(artistName);
+	}
 	
 	@Test
 	void createTest() {
