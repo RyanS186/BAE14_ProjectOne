@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Record Collection</title>
+    <link rel="icon" type="image/gif/png" href="../images/favicon/favicon.png">
+</head>
+<body onload="getAll()">
+    
+    <div class="header">
+        <a class="logo">Record Collection</a>
+        <div class="header-right">
+            <button class="add-btn" id="add-btn" onclick="openAdd()">Add to Collection</button>
+        </div>
+    </div>
+
+    <div id="create-modal" class="modal">
+        <!-- Modal content -->
+        <div class="create-modal-content">
+            <div>
+                <span class="close">&times;</span>
+                <br>
+                <h2 style="text-align:center">Add Record</h2>
+            </div>
+          <form class="form" id="create-form">
+                <input class="form-field" id="album-name" type="text" name="album" placeholder="Album Name" required><br>
+                <input class="form-field" id="artist-name" type="text" name="artist" placeholder="Artist Name" required><br>
+                <input class="form-field" id="album-genre" type="text"  name="genre" placeholder="Genre"><br>
+                <input class="form-field" id="release-year" type="number"  name="year" placeholder="Release Year" min="1900"><br>
+                <!-- <input class="form-field" id="spotify-link" type="text"  name="spotify" placeholder="Spotify URL"><br>
+                <input class="form-field" id="album-artwork" type="text" name="artwork" placeholder="Album Artwork URL"><br> -->
+                <button class="submit-btn" type="submit">Submit</button>
+                <button class="reset-btn" type="reset">Reset</button>
+          </form>
+        </div>
+    </div>
+
+    <div id="edit-modal" class="modal">
+        <!-- Modal content -->
+        <div class="edit-modal-content">
+          <span class="close">&times;</span>
+          <br>
+          <h2 style="text-align:center">Edit Record</h2>
+          <form name="edit-form" class="form" id="edit-form">
+                <input class="form-field" id="album-name" type="text" name="album" placeholder="Album Name" required><br>
+                <input class="form-field" id="artist-name" type="text" name="artist" placeholder="Artist Name" required><br>
+                <input class="form-field" id="album-genre" type="text"  name="genre" placeholder="Genre"><br>
+                <input class="form-field" id="release-year" type="number"  name="year" placeholder="Release Year" min="1900"><br>
+                <!-- <input class="form-field" id="spotify-link" type="text"  name="spotify" placeholder="Spotify URL"><br>
+                <input class="form-field" id="album-artwork" type="text" name="artwork" placeholder="Album Artwork URL"><br> -->
+                <button class="submit-btn" type="submit">Submit</button>
+                <button class="reset-btn" type="reset">Reset</button>
+          </form>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="row" id="results-div">
+            <div class="column">
+                <div class="card"> 
+                    <img class="artwork"><img> 
+                    <div class="album-info">Album Name <br> Album Artist <br> Release Year</div>
+                    <button class="spotify-btn">
+                        <img style="width: 125px;" src="../images/spotify/Spotify_Logo_RGB_Black.png">
+                    </button> 
+                    <br>
+                    <button class="edit-btn" id="edit-btn">Edit</button>
+                    <button class="remove-btn" type="submit">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../scripts/scripts.js"></script>
+</body>
+</html>
