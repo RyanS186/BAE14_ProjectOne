@@ -75,10 +75,10 @@ const openEdit = (id) => {
             const entry = res.data;
             // Populates the edit form with current values
             const edit_form = document.forms["edit-form"];
-            edit_form["album"].value = entry.albumName;
-            edit_form["artist"].value = entry.artistName;
-            edit_form["genre"].value = entry.genre;
-            edit_form["year"].value = entry.releaseYear;
+            edit_form.album.value = entry.albumName;
+            edit_form.artist.value = entry.artistName;
+            edit_form.genre.value = entry.genre;
+            edit_form.year.value = entry.releaseYear;
 
             // Gets the <span> that closes this modal
             const span = document.getElementsByClassName("close")[1];
@@ -116,8 +116,10 @@ const openEdit = (id) => {
                         getAll();
                         editModal.style.display = "none";
                     }).catch((err) => console.error(err))
-            
-        }).catch((err) => console.error(err))
+
+            /* To resolve BAE1-54, I've added the EventListener option 'once'. 
+            This prevents the previous EventListeners from remaining active. */
+        },{once: true}).catch((err) => console.error(err))
 
 })
 }
@@ -198,4 +200,3 @@ const printResult = (result) => {
     column_div.appendChild(card_div);
     results_div.appendChild(column_div);
 }
-
